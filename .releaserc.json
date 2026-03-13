@@ -1,0 +1,21 @@
+{
+  "branches": ["main"],
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    ["@semantic-release/changelog", { "changelogFile": "CHANGELOG.md" }],
+    ["@semantic-release/npm", { "npmPublish": true }],
+    ["@semantic-release/exec", {
+      "prepareCmd": "node scripts/sync-plugin-versions.mjs ${nextRelease.version}"
+    }],
+    ["@semantic-release/git", {
+      "assets": ["CHANGELOG.md", "package.json", ".claude-plugin/plugin.json", ".claude-plugin/marketplace.json"],
+      "message": "chore(release): ${nextRelease.version} [skip ci]"
+    }],
+    ["@semantic-release/github", {
+      "assets": [
+        { "path": "dist/**", "label": "Distribution (dist.zip)" }
+      ]
+    }]
+  ]
+}
